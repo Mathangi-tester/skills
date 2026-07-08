@@ -1,0 +1,30 @@
+As a Reporting & Analytics consumer
+I want Live Orders to continue functioning correctly with all SCM orders being captured in the ODS
+So that the existing reporting, dashboards, and downstream processes remain uninterrupted during and after the Electronic Orders middleware changes
+
+AC1 - Live Orders receives all SCM orders 
+Given an order is entered or imported into Oracle SCM
+When the order is created or updated in Oracle
+Then Live Orders data in ODS receives the complete SCM order record in the same structure, format, and level of detail as it does today from Reality
+
+AC2 - Data landing in ODS must conform to existing schema
+Given the ODS holds SCM order data used by Live Orders
+When the middleware sends SCM orders to the ODS
+Then the data must match the existing ODS schema and semantics so that no downstream changes are required
+
+AC3 - No interruption to Live Orders reporting
+Given Live Orders is used daily for operational reporting
+When the new middleware integration goes live
+
+And order data is sent from Oracle SCM to Live Orders 
+Then Live Orders must continue to function without downtime or reporting gaps
+
+AC4 - No regression in Live Orders output
+Given Live Orders currently produces specific reports, metrics, and extracts
+When the middleware changes are introduced and the data is sent from SCM to ODS
+Then all existing outputs/reports update correctly and remain consistent with today’s results with no functional or data gaps
+
+AC5 - Error handling remains unchanged
+Given Live Orders relies on stable ODS loads
+When an invalid or malformed SCM order is received
+Then ODS and Live Orders must behave in the same way as the current system (warnings, logs, failure handling, etc.)
